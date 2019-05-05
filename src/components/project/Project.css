@@ -1,0 +1,112 @@
+.wrapperp {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #258ea6;
+}
+
+.form-wrapperp {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 50px #555;
+  background-color: #fff;
+}
+
+.formp {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.project_heading {
+  text-align: center;
+  color: #000033;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+label {
+  font-size: 0.8em;
+  margin-bottom: 0.25em;
+  color: #222;
+  font-weight: lighter;
+}
+
+input {
+  padding: 10px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #cfcfcf;
+}
+
+input::placeholder {
+  font-size: 1.2em;
+  font-weight: lighter;
+  color: #999;
+}
+
+input.error {
+  border: 1px solid red;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.75em;
+  display: relative;
+}
+
+.id,
+.project_name,
+.project_description {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.id,
+.project_name,
+.project_description {
+  width: 100%;
+}
+
+.btn-1 {
+  width: 100px;
+  background-color: #000033;
+  color: white;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.btn-2 {
+  width: 100px;
+  background-color: #8b0000;
+  color: white;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.table {
+  width: 75%;
+  margin-left: 12.5%;
+  margin-left: 12.5%;
+  margin-top: 0;
+}
+.head_viewp {
+  color: #000033;
+}
+
+.btn_submit_project {
+  width: 300px;
+  height: 40px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #000033;
+  color: white;
+}
