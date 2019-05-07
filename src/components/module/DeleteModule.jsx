@@ -1,7 +1,7 @@
-export function DeleteProject(projectId) {
+export function DeleteModule(moduleId) {
   if (window.confirm("Are you sure want to delete?")) {
-    console.log(projectId);
-    var url = `http://localhost:8080/DefectTracker/deleteProject/${projectId}`;
+    console.log(moduleId);
+    var url = `http://localhost:8080/DefectTracker/module/deleteModule/${moduleId}`;
 
     return fetch(url, {
       method: "DELETE",

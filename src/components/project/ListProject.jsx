@@ -1,5 +1,4 @@
 import React from "react";
-//import "./ListProject.css";
 import { DeleteProject } from "./DeleteProject";
 
 export default class ListProject extends React.Component {
@@ -8,11 +7,6 @@ export default class ListProject extends React.Component {
   };
 
   async componentDidMount() {
-    // const url = "http://localhost:3000/AddDefect";
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // this.setState({ detail: data.AddDefect, loading: false });
-    // console.log(data);
     this.getPost();
   }
   //project view start
@@ -27,9 +21,21 @@ export default class ListProject extends React.Component {
 
   //project view end
 
+  //project edit start
+
+  edit(id) {
+    this.props.history.push("/EditProject/${id}");
+    //console.log(id);
+  }
+
+  //project edit end
+
   delete(e) {
     DeleteProject(e);
-    window.location.reload();
+    if (DeleteProject) {
+      window.location.reload();
+    }
+    //window.location.reload();
   }
 
   render() {
@@ -37,7 +43,7 @@ export default class ListProject extends React.Component {
       <div className="bs-example-project">
         <div className="bs-example">
           <h1 className="head_viewp">View All Projects</h1>
-          <table className="table">
+          <table className="table table_width">
             <thead>
               <tr>
                 <th>Project ID</th>
@@ -49,14 +55,19 @@ export default class ListProject extends React.Component {
             <tbody>
               {this.state.Project.map(e => (
                 <tr>
-                  <td>{e.id}</td>
-                  <td>{e.project_name}</td>
-                  <td>{e.project_description}</td>
+                  <td>{e.projectId}</td>
+                  <td>{e.projectName}</td>
+                  <td>{e.projectDescription}</td>
                   <td>
-                    <button className="btn-1">Edit</button>
+                    <button
+                      className="btn-1"
+                      onClick={this.componentDidCatch.bind(this, e.projectId)}
+                    >
+                      Edit
+                    </button>
                     <button
                       /* onClick={() => this.delete(e.id)}*/
-                      onClick={this.delete.bind(this, e.id)}
+                      onClick={this.delete.bind(this, e.projectId)}
                       className="btn-2"
                     >
                       Delete

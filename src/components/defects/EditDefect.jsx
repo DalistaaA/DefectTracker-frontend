@@ -1,6 +1,5 @@
 import React from "react";
 import "./Defects.css";
-//import { Row, Col, Form } from "react-bootstrap";
 
 export default class Defects extends React.Component {
   state = {
@@ -20,129 +19,106 @@ export default class Defects extends React.Component {
     avalableIn: ""
   };
 
-  handlechange = e => {
+  change = e => {
     this.setState({
       [e.target.id]: e.target.value
     });
   };
 
-  handleSubmit = e => {
+  onSubmit = e => {
     e.preventDefault();
-    let defect = {
-      module: this.state.module,
-      description: this.state.description,
-      stepsToRecreate: this.state.stepsToRecreate,
-      severity: this.state.severity,
-      priority: this.state.priority,
-      defectType: this.state.defectType,
-      enteredBy: this.state.enteredBy,
-      enteredDate: this.state.enteredDate,
-      status: this.state.status,
-      assignedTo: this.state.assignedTo,
-      fixedBy: this.state.fixedBy,
-      fixedDate: this.state.fixedDate,
-      avalableIn: this.state.avalableIn
-    };
-    console.log(defect);
+    console.log(this.state);
     fetch("http://localhost:8080/DefectTracker/defect/saveDefect", {
       method: "POST",
       headers: {
         Accept: "application/json,text/plain,*/*",
         "Content-type": "application/json"
       },
-      body: JSON.stringify(defect)
+      body: JSON.stringify(this.state)
     });
   };
 
-  componentDidMount() {}
-
   render() {
     return (
-      <div>
-        <div>
-          <h1 className="add_defect_heading">Add Defect</h1>
-          <form onSubmit={this.handleSubmit}>
+      <div className="wrapper">
+        <div className="form-wrapper">
+          <h1>Defects Form</h1>
+          <form>
             <table>
               <tr>
                 <td className="defect_id">
-                  <label htmlFor="defectId" className="labeld">
-                    Defect ID
-                  </label>
+                  <label htmlFor="defectId">Defect ID</label>
                   <input
                     type="text"
                     placeholder="Defect ID"
                     name="defectId"
                     id="defectId"
-                    onChange={this.handlechange}
+                    value={this.state.defectId}
+                    onChange={e => this.change(e)}
                     /*onChange={e => this.setState({ defect_id: e.target.value })}*/ // assign value without setstate
                   />
                 </td>
                 <td className="module">
-                  <label htmlFor="module" className="labelmod">
-                    Module
-                  </label>
+                  <label htmlFor="module">Module</label>
                   <input
                     type="text"
                     name="module"
                     id="module"
                     placeholder="Module"
-                    onChange={this.handlechange}
+                    value={this.state.module}
+                    onChange={e => this.change(e)}
                   />
                 </td>
               </tr>
               <br />
               <tr>
                 <td className="description">
-                  <label htmlFor="description" className="labeldes">
-                    Description
-                  </label>
+                  <label htmlFor="description">Description</label>
                   <textarea
                     type="text"
                     name="description"
                     id="description"
                     placeholder="Description"
-                    onChange={this.handlechange}
+                    value={this.state.description}
+                    onChange={e => this.change(e)}
                   />
                 </td>
                 <td className="steps_to_recreate">
-                  <label htmlFor="stepsToRecreate" className="labelst">
-                    Steps to Recreate
-                  </label>
+                  <label htmlFor="stepsToRecreate">Steps to Recreate</label>
                   <textarea
                     type="text"
                     name="stepsToRecreate"
                     id="stepsToRecreate"
                     placeholder="Steps to Recreate"
-                    onChange={this.handlechange}
+                    value={this.state.stepsToRecreate}
+                    onChange={e => this.change(e)}
                   />
                 </td>
               </tr>
               <br />
               <tr>
                 <td className="severity">
-                  <label htmlFor="severity" className="labelse">
-                    Severity
-                  </label>
+                  <label htmlFor="severity">Severity</label>
                   <select
                     name="severity"
                     id="severity"
                     placeholder="Severity"
-                    onChange={this.handlechange}
+                    value={this.state.severity}
+                    onChange={e => this.change(e)}
                   >
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
                   </select>
                 </td>
                 <td className="priority">
-                  <label htmlFor="priority" className="labelpr">
-                    Priority
-                  </label>
+                  <label htmlFor="priority">Priority</label>
                   <select
                     name="priority"
                     id="priority"
                     placeholder="Priority"
-                    onChange={this.handlechange}
+                    value={this.state.priority}
+                    onChange={e => this.change(e)}
                   >
                     <option>High</option>
                     <option>Medium</option>
@@ -153,14 +129,13 @@ export default class Defects extends React.Component {
               <br />
               <tr>
                 <td className="defect_type">
-                  <label htmlFor="defectType" className="labeldt">
-                    Defect Type
-                  </label>
+                  <label htmlFor="defectType">Defect Type</label>
                   <select
                     name="defectType"
                     id="defectType"
                     placeholder="Defect Type"
-                    onChange={this.handlechange}
+                    value={this.state.defectType}
+                    onChange={e => this.change(e)}
                   >
                     <option>UI</option>
                     <option>functionality</option>
@@ -169,15 +144,14 @@ export default class Defects extends React.Component {
                   </select>
                 </td>
                 <td className="entered_by">
-                  <label htmlFor="enteredBy" className="labeleb">
-                    Entered By
-                  </label>
+                  <label htmlFor="enteredBy">Entered By</label>
                   <select
                     type="text"
                     name="enteredBy"
                     id="enteredBy"
                     placeholder="Entered By"
-                    onChange={this.handlechange}
+                    value={this.state.enteredBy}
+                    onChange={e => this.change(e)}
                   >
                     <option>User1</option>
                   </select>
@@ -186,27 +160,25 @@ export default class Defects extends React.Component {
               <br />
               <tr>
                 <td className="entered_date">
-                  <label htmlFor="enteredDate" className="labeled">
-                    Entered Date
-                  </label>
+                  <label htmlFor="enteredDate">Entered Date</label>
                   <input
                     type="Date"
                     name="enteredDate"
                     id="enteredDate"
                     placeholder="Entered Date"
-                    onChange={this.handlechange}
+                    value={this.state.enteredDate}
+                    onChange={e => this.change(e)}
                   />
                 </td>
                 <td className="status">
-                  <label htmlFor="status" className="labelsta">
-                    Status
-                  </label>
+                  <label htmlFor="status">Status</label>
                   <select
                     type="text"
                     name="status"
                     id="status"
                     placeholder="Status"
-                    onChange={this.handlechange}
+                    value={this.state.status}
+                    onChange={e => this.change(e)}
                   >
                     <option>New</option>
                     <option>Open</option>
@@ -221,29 +193,27 @@ export default class Defects extends React.Component {
               <br />
               <tr>
                 <td className="assigned_to">
-                  <label htmlFor="assignedTo" className="labelat">
-                    Assigned To
-                  </label>
+                  <label htmlFor="assignedTo">Assigned To</label>
                   <select
                     type="text"
                     name="assignedTo"
                     id="assignedTo"
                     placeholder="Assigned To"
-                    onChange={this.handlechange}
+                    value={this.state.assignedTo}
+                    onChange={e => this.change(e)}
                   >
                     <option>User1</option>
                   </select>
                 </td>
                 <td className="fixed_by">
-                  <label htmlFor="fixedBy" className="labelfb">
-                    Fixed By
-                  </label>
+                  <label htmlFor="fixedBy">Fixed By</label>
                   <select
                     type="text"
                     name="fixedBy"
                     id="fixedBy"
                     placeholder="Fixed By"
-                    onChange={this.handlechange}
+                    value={this.state.fixedBy}
+                    onChange={e => this.change(e)}
                   >
                     <option>User1</option>
                   </select>
@@ -252,32 +222,30 @@ export default class Defects extends React.Component {
               <br />
               <tr>
                 <td className="fixed_date">
-                  <label htmlFor="fixedDate" className="labelfd">
-                    Fixed Date
-                  </label>
+                  <label htmlFor="fixedDate">Fixed Date</label>
                   <input
                     type="Date"
                     name="fixedDate"
                     id="fixedDate"
                     placeholder="Fixed Date"
-                    onChange={this.handlechange}
+                    value={this.state.fixedDate}
+                    onChange={e => this.change(e)}
                   />
                 </td>
                 <td className="avalable_in">
-                  <label htmlFor="avalableIn" className="labela">
-                    Available In
-                  </label>
+                  <label htmlFor="avalableIn">Available In</label>
                   <input
                     type="text"
                     name="avalableIn"
                     id="avalableIn"
                     placeholder="Available In"
-                    onChange={this.handlechange}
+                    value={this.state.avalableIn}
+                    onChange={e => this.change(e)}
                   />
                 </td>
               </tr>
               <br />
-              <button type="submit" className="submit_defect">
+              <button onClick={e => this.onSubmit(e)} className="submit_defect">
                 Submit Defect
               </button>
             </table>

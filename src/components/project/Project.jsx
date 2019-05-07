@@ -4,9 +4,9 @@ import "./Project.css";
 
 export default class SignUp extends Component {
   state = {
-    id: "",
-    project_name: "",
-    project_description: ""
+    projectId: "",
+    projectName: "",
+    projectDescription: ""
   };
 
   handleChange = e => {
@@ -33,32 +33,32 @@ export default class SignUp extends Component {
           <h1 className="project_heading">Add New Project</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="id">
-              <label htmlFor="id">Id</label>
+              <label htmlFor="projectId">Project Id</label>
               <input
                 type="text"
-                placeholder="ID"
-                name="id"
-                id="id"
+                placeholder="Project ID"
+                name="projectId"
+                id="projectId"
                 onChange={this.handleChange}
               />
             </div>
             <div className="project_name">
-              <label htmlFor="project_name">Project Name</label>
+              <label htmlFor="projectName">Project Name</label>
               <input
                 type="text"
                 placeholder="Project Name"
-                name="project_name"
-                id="project_name"
+                name="projectName"
+                id="projectName"
                 onChange={this.handleChange}
               />
             </div>
             <div className="project_description">
-              <label htmlFor="project_description">Project Description</label>
+              <label htmlFor="projectDescription">Project Description</label>
               <input
                 type="text"
                 placeholder="Project Description"
-                name="project_description"
-                id="project_description"
+                name="projectDescription"
+                id="projectDescription"
                 onChange={this.handleChange}
               />
             </div>

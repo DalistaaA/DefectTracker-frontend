@@ -7,22 +7,22 @@ export default class EditProject extends Component {
     getProject: []
   };
   getProject = {
-    id: "",
-    project_name: "",
-    project_description: ""
+    projectId: "",
+    projectName: "",
+    projectDescription: ""
   };
 
   FetchProjectById() {
     fetch(
-      `http://localhost:8080/DefectTracker/findProject/{id}` +
-        this.props.match.params.id
+      `http://localhost:8080/DefectTracker/findProject/{projectId}` +
+        this.props.match.params.projectId
     )
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data =>
         this.setState({
-          id: data.id,
-          project_name: data.project_name,
-          project_description: data.project_description,
+          projectId: data.projectId,
+          projectName: data.projectName,
+          projectDescription: data.projectDescription,
           isLoading: false
         })
       )
@@ -30,15 +30,15 @@ export default class EditProject extends Component {
   }
 
   componentDidMount() {
-    this.FetchProjectById(this.id);
+    this.FetchProjectById(this.projectId);
   }
 
   handleUpdate = e => {
     // console.log(subClassId);
     const projectUpdate = {
-      id: this.state.id,
-      project_name: this.state.project_name,
-      project_description: this.state.project_description
+      projectId: this.state.projectId,
+      projectName: this.state.projectName,
+      projectDescription: this.state.projectDescription
     };
     UpdateFunction.UpdateProject(projectUpdate);
     console.log(projectUpdate);
@@ -60,32 +60,32 @@ export default class EditProject extends Component {
           <h1>Add New Project</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="id">
-              <label htmlFor="id">Id</label>
+              <label htmlFor="projectId">Project Id</label>
               <input
                 type="text"
                 placeholder="ID"
-                name="id"
-                id="id"
+                name="projectId"
+                id="projectId"
                 onChange={this.handleChange}
               />
             </div>
             <div className="project_name">
-              <label htmlFor="project_name">Project Name</label>
+              <label htmlFor="projectName">Project Name</label>
               <input
                 type="text"
                 placeholder="Project Name"
-                name="project_name"
-                id="project_name"
+                name="projectName"
+                id="projectName"
                 onChange={this.handleChange}
               />
             </div>
             <div className="project_description">
-              <label htmlFor="project_description">Project Description</label>
+              <label htmlFor="projectDescription">Project Description</label>
               <input
                 type="text"
                 placeholder="Project Description"
-                name="project_description"
-                id="project_description"
+                name="projectDescription"
+                id="projectDescription"
                 onChange={this.handleChange}
               />
             </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-/*import { Jumbotron, Grid Row, Col, Image, Button } from "react-bootstrap";*/
 import "./SignUp.css";
 //import axios from "axios";
 
@@ -17,16 +16,14 @@ import "./SignUp.css";
 // };
 
 export default class SignUp extends Component {
-  //constructor(props) {
-  //super(props);
-
   state = {
-    first_name: null,
-    last_name: null,
-    email: null,
-    designation: null,
-    password: null,
-    cpassword: null
+    userId: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    designation: "",
+    password: "",
+    cpassword: ""
   };
 
   handleChange = e => {
@@ -36,14 +33,22 @@ export default class SignUp extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    fetch("http://localhost:8080/DefectTrackerSystem/saveUser", {
+    let user = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      designation: this.state.designation,
+      password: this.state.password,
+      cpassword: this.state.cpassword
+    };
+    console.log(user);
+    fetch("http://localhost:8080/DefectTracker/user/saveUseer", {
       method: "POST",
       headers: {
         Accept: "application/json,text/plain,*/*",
         "Content-type": "application/json"
       },
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(user)
     });
   };
 
@@ -174,15 +179,15 @@ export default class SignUp extends Component {
     return (
       <div className="wrappers">
         <div className="form-wrappers">
-          <h1>SignUp Form</h1>
+          <h1 className="head_add_signup">SignUp Form</h1>
           <form onSubmit={this.handleSubmit} className="forms">
             <div className="firstName">
               <label htmlFor="firstName">First Name</label>
               <input
                 type="text"
                 placeholder="First Name"
-                name="first_name"
-                id="first_name"
+                name="firstName"
+                id="firstName"
                 noValidate
                 onChange={this.handleChange}
               />
@@ -192,8 +197,8 @@ export default class SignUp extends Component {
               <input
                 type="text"
                 placeholder="Last Name"
-                name="last_name"
-                id="last_name"
+                name="lastName"
+                id="lastName"
                 noValidate
                 onChange={this.handleChange}
               />
@@ -239,7 +244,7 @@ export default class SignUp extends Component {
               <label htmlFor="cpassword">Confirm Password</label>
               <input
                 type="password"
-                placeholder="Password"
+                placeholder="Confirm Password"
                 name="cpassword"
                 id="cpassword"
                 noValidate
