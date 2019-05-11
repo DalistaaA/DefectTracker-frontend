@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Project.css";
-import "./UpdateFunction.jsx";
 
 export default class EditProject extends Component {
   state = {
@@ -33,17 +32,29 @@ export default class EditProject extends Component {
     this.FetchProjectById(this.projectId);
   }
 
+  UpdateProject(projectUpdate) {
+    return fetch("http://localhost:8080/DefectTracker/updateProject", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(projectUpdate)
+    })
+      .then(res => {
+        return res;
+      })
+      .catch(err => err);
+  }
+
   handleUpdate = e => {
-    // console.log(subClassId);
+    e.preventDefault();
     const projectUpdate = {
       projectId: this.state.projectId,
       projectName: this.state.projectName,
       projectDescription: this.state.projectDescription
     };
-    UpdateFunction.UpdateProject(projectUpdate);
+    this.UpdateProject(projectUpdate);
     console.log(projectUpdate);
-    //SubClass.UpdateSubClass(subClassUpdate);
-    //console.log(subClassUpdate);
   };
 
   handleChange = e => {
@@ -66,6 +77,7 @@ export default class EditProject extends Component {
                 placeholder="ID"
                 name="projectId"
                 id="projectId"
+                value={this.state.projectId}
                 onChange={this.handleChange}
               />
             </div>
@@ -76,6 +88,7 @@ export default class EditProject extends Component {
                 placeholder="Project Name"
                 name="projectName"
                 id="projectName"
+                value={this.state.projectName}
                 onChange={this.handleChange}
               />
             </div>
@@ -86,11 +99,14 @@ export default class EditProject extends Component {
                 placeholder="Project Description"
                 name="projectDescription"
                 id="projectDescription"
+                value={this.state.projectDescription}
                 onChange={this.handleChange}
               />
             </div>
             <div className="submit">
-              <button type="submit">Update</button>
+              <button type="submit" onClick={e => this.handleUpdate(e)}>
+                Update
+              </button>
             </div>
           </form>
         </div>

@@ -23,8 +23,8 @@ export default class ListProject extends React.Component {
 
   //project edit start
 
-  edit(id) {
-    this.props.history.push("/EditProject/${id}");
+  edit(projectId) {
+    this.props.history.push(`/EditProject/${projectId}`);
     //console.log(id);
   }
 
@@ -61,7 +61,7 @@ export default class ListProject extends React.Component {
                   <td>
                     <button
                       className="btn-1"
-                      onClick={this.componentDidCatch.bind(this, e.projectId)}
+                      onClick={this.edit.bind(this, e.projectId)}
                     >
                       Edit
                     </button>

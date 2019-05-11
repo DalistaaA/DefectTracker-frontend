@@ -13,6 +13,7 @@ import Defects from "./components/defects/Defects";
 import ListDefect from "./components/defects/ListDefect";
 import Module from "./components/module/Module";
 import ListModule from "./components/module/ListModule";
+import ProjectIndex from "./components/project/ProjectIndex";
 
 class App extends Component {
   render() {
@@ -31,6 +32,7 @@ class App extends Component {
           <Route exact path="/module" component={Module} />
           <Route exact path="/listmodule" component={ListModule} />
           <Route exact path="/listuser" component={ListUser} />
+          <ProjectIndex />
         </div>
       </Router>
     );
